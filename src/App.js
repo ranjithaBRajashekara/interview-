@@ -22,6 +22,8 @@ import {GiPuzzle} from 'react-icons/gi';
 import React,{ useCallback, useState } from 'react';
 import ReactFlow, { addEdge, applyEdgeChanges, applyNodeChanges } from 'react-flow-renderer';
 import HeatMap from "react-heatmap-grid";
+import KafkaHealth from './components/Kafka-health';
+import DetailsButton from './components/Details-button';
 
 const rfStyle = {
   width:'100%',
@@ -205,7 +207,7 @@ function Flow() {
       )
     }
     kafkaHealthData.map((data)=>{
-      console.log(data)
+      // console.log(data)
       var obj = {};
       obj.title = data.title;
       obj.value = data.value;
@@ -302,28 +304,7 @@ function Flow() {
     <div className='health'>
       <div className='kafka-health'>
         <div className='kafka-health-heading'>Kafka Health</div>
-        {(kafkData).map((row)=>(
-          <div className='kafka-health-contents'>
-            <div className='kafka-health-each-content'>
-              <div className='kafka-health-each-row'>
-                <div>{row.title}</div>
-                <div>{row.value}</div>
-              </div>
-              <div className='kafka-health-each-row'>
-                <div>DATA IN</div>
-                <div>{row.dataIn}</div>
-              </div>
-              <div className='kafka-health-each-row'>
-                <div>DATA OUT</div>
-                <div>{row.dataOut}</div>
-              </div>
-              <div className='kafka-health-each-row'>
-              <div>Message IN</div>
-              <div>{row.messageIn}</div>
-              </div>
-            </div>
-          </div>
-        ))}
+        <KafkaHealth data={kafkData}/>
       </div>
       <div className='kafka-health'>
       <div className='kafka-health-heading'>API Health</div>
